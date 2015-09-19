@@ -1,0 +1,13 @@
+* battery-acpi-status
+** What is it?
+battery-acpi status is an extension to stumpWM. It supplies a battery
+status to the modline and uses the "acpi" command to collect the
+information.
+** Dependencies
+- A lisp implementation
+- stumpwm in your asdf path
+- the ACPI command in your path
+** How to use it
+#+BEGIN_SRC lisp
+(setf *screen-mode-line-format* "%b")
+#+END_SRC
