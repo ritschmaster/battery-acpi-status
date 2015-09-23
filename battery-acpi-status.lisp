@@ -27,8 +27,11 @@
   "Returns the battery status as string."
   (declare (ignore args))
   (let ((shell-ret (trivial-shell:shell-command "acpi -b")))
-    (setf shell-ret (subseq shell-ret 11))
-    (remove #\,
-            (subseq shell-ret 0 (- (length shell-ret) 1)))))
+    (if (cl-ppcre:scan "Battery" shell-ret)
+        (progn
+          (setf shell-ret (subseq shell-ret 11))
+          (remove #\,
+                  (subseq shell-ret 0 (- (length shell-ret) 1))))
+        "No battery present")))
 
 
